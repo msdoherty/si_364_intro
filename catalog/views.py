@@ -9,13 +9,13 @@ def index(request):
     # Generate counts of some of the main objects
     num_books = Book.objects.all().count()
     num_instances = BookInstance.objects.all().count()
-    
+
     # Available books (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-    
-    # The 'all()' is implied by default.    
+
+    # The 'all()' is implied by default.
     num_authors = Author.objects.count()
-    
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -34,3 +34,7 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    pageinate_by = 2
