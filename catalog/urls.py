@@ -22,3 +22,12 @@ if settings.DEBUG:
             'document_root': os.path.join(BASE_DIR, 'catalog/static'),
         }),
     ]
+
+#Add Django site authentication urls (for login, logout, password management)
+# This import wasn't included in the copy-pasta and broke things.
+# Thanks, stack overflow
+# https://stackoverflow.com/questions/34471102/python-nameerror-name-include-is-not-defined
+from django.conf.urls import include
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
